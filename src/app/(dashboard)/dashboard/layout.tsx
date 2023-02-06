@@ -1,18 +1,12 @@
 import { notFound } from "next/navigation";
+import MainMenu from "../../../components/menus/MainMenu";
+import UserMenu from "../../../components/menus/UserMenu";
+import { ModeToggle } from "../../../components/ModeToggle";
+import { HeaderSearch } from "../../../components/Search";
+import { dashboardConfig } from "../../../config/dashboard";
+import { getCurrentUser } from "../../../lib/servers/session";
 
-import { dashboardConfig } from "@/config/dashboard";
-import { getCurrentUser } from "@/lib/session";
-import { DashboardNav } from "@/components/Dashboard/Nav";
-import { MainNav } from "@/components/MainNav";
-import { UserAccountNav } from "@/components/UserAccountNav";
-
-interface DashboardLayoutProps {
-  children?: React.ReactNode;
-}
-
-export default async function DashboardLayout({
-  children,
-}: DashboardLayoutProps) {
+export default async function DashboardLayout() {
   const user = await getCurrentUser();
 
   if (!user) {
@@ -20,25 +14,19 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="mx-auto flex flex-col space-y-6">
-      <header className="container sticky top-0 z-40 bg-white">
-        <div className="flex h-16 items-center justify-between border-b border-b-slate-200 py-4">
-          <MainNav items={dashboardConfig.mainNav} />
-          <UserAccountNav
-            user={{
-              name: user.name,
-              image: user.image,
-              email: user.email,
-            }}
-          />
+    <div className="flex flex-col">
+      <header className="sticky top-0 z-40 w-full border-b border-b-slate-200 bg-white dark:border-b-slate-700 dark:bg-slate-900">
+        <div className="container flex h-16 items-center">
+          <MainMenu items={dashboardConfig.mainMenu} />
+          <div className="flex flex-1 items-center justify-end space-x-2">
+            <div className="hidden flex-1 sm:grow-0 md:flex">
+              <HeaderSearch />
+            </div>
+            <ModeToggle />
+            <UserMenu user={user} />
+          </div>
         </div>
       </header>
-      <div className="container grid gap-12 md:grid-cols-[200px_1fr]">
-        <aside className="hidden w-[200px] flex-col md:flex">
-          <DashboardNav items={dashboardConfig.sidebarNav} />
-        </aside>
-        <main className="flex w-full flex-1 flex-col">{children}</main>
-      </div>
     </div>
   );
 }

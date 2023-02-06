@@ -1,14 +1,14 @@
 import Link from "next/link";
-
-import { Icons } from "@/components/ui/Icons";
-import { UserAuthForm } from "@/components/Forms/UserAuthForm";
+import { UserAuthForm } from "../../../components/forms/UserAuthForm";
+import { Icons } from "../../../components/ui/Icons";
 
 export default function LoginPage() {
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
       <Link
         href="/"
-        className="absolute top-4 left-4 inline-flex items-center justify-center rounded-lg border border-transparent bg-transparent py-2 px-3 text-center text-sm  font-medium text-slate-900 hover:border-slate-200 hover:bg-slate-100 focus:z-10 focus:outline-none focus:ring-4 focus:ring-slate-200 md:top-8 md:left-8">
+        className="absolute top-4 left-4 inline-flex items-center justify-center rounded-lg border border-transparent bg-transparent py-2 px-3 text-center text-sm  font-medium text-slate-900 hover:border-slate-200 hover:bg-slate-100 focus:z-10 focus:outline-none focus:ring-4 focus:ring-slate-200 md:top-8 md:left-8"
+      >
         <>
           <Icons.chevronLeft className="mr-2 h-4 w-4" />
           Back

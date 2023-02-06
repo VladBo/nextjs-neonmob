@@ -1,7 +1,7 @@
-import type { SiteConfig } from "../types";
+import { SiteConfig } from "../types/types";
 
 export const siteConfig: SiteConfig = {
-  name: "Google Ads Exclude",
+  name: "NeonMob",
   links: {
     twitter: "https://twitter.com",
     github: "https://github.com",

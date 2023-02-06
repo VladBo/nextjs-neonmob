@@ -6,11 +6,10 @@ import { signIn } from "next-auth/react";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-import { cn } from "@/lib/utils";
-import { userAuthSchema } from "@/lib/validations/auth";
-import { toast } from "@/components/ui/Toast";
-import { Icons } from "@/components/ui/Icons";
+import { userAuthSchema } from "../../lib/clients/validations/auth";
+import { toast } from "../ui/Toast";
+import cn from "../../helpers/cn";
+import { Icons } from "../ui/Icons";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -69,7 +68,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              name="email"
               disabled={isLoading}
               {...register("email")}
             />
@@ -81,7 +79,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           </div>
           <button
             className="inline-flex w-full items-center justify-center rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50 disabled:opacity-50 dark:hover:bg-[#050708]/30 dark:focus:ring-slate-500"
-            disabled={isLoading}>
+            disabled={isLoading}
+          >
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import hotToast, { Toaster as HotToaster } from "react-hot-toast";
-import { cn } from "../../utils/common";
+import cn from "../../helpers/cn";
 import { Icons } from "./Icons";
 
 export const Toaster = HotToaster;
