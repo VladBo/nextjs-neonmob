@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import HomePageFeaturedSection from "../../../components/sections/HomePageFeaturedSection";
 import { getCurrentUser } from "../../../lib/servers/session";
 
 export default async function DashboardPage() {
@@ -8,5 +9,9 @@ export default async function DashboardPage() {
     redirect("/");
   }
 
-  return <></>;
+  return (
+    <>
+      <HomePageFeaturedSection />
+    </>
+  );
 }

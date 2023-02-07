@@ -11,17 +11,17 @@ datasource db {
 }
 
 model Account {
-  id                String  @id @default(cuid())
+  id                String   @id @default(cuid())
   userId            String
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?  @db.Text
+  access_token      String?  @db.Text
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?  @db.Text
   session_state     String?
   createdAt         DateTime @default(now())
   updatedAt         DateTime @default(now())
@@ -51,6 +51,7 @@ model User {
   sessions      Session[]
   role          Role         @default(USER)
   collections   Collection[]
+  series        Series[]
   packs         Pack[]
 }
 
@@ -68,13 +69,13 @@ enum Role {
 }
 
 model Collection {
-  id          String               @id @default(cuid())
-  name        String
-  createdAt   DateTime             @default(now())
-  updatedAt   DateTime?
-  user        User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      String
-  cards       CollectionsOnCards[]
+  id        String               @id @default(cuid())
+  name      String
+  createdAt DateTime             @default(now())
+  updatedAt DateTime?
+  user      User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  cards     CollectionsOnCards[]
 }
 
 model Card {
@@ -86,7 +87,6 @@ model Card {
   seriesId    String
   packs       PacksOnCards[]
   collections CollectionsOnCards[]
-
 }
 
 model Series {
@@ -94,19 +94,22 @@ model Series {
   name        String
   description String
   coverImage  String
+  status      Boolean @default(false)
+  author      User    @relation(fields: [authorId], references: [id])
+  authorId    String
   cards       Card[]
   packs       Pack[]
 }
 
 model Pack {
-  id        String         @id @default(cuid())
-  name      String
-  authorId  String
-  author    User           @relation(fields: [authorId], references: [id])
-  series    Series         @relation(fields: [seriesId], references: [id], onDelete: Cascade)
-  seriesId  String
-  cards     PacksOnCards[]
-  type      PackType
+  id       String         @id @default(cuid())
+  name     String
+  authorId String
+  author   User           @relation(fields: [authorId], references: [id])
+  series   Series         @relation(fields: [seriesId], references: [id], onDelete: Cascade)
+  seriesId String
+  cards    PacksOnCards[]
+  type     PackType
 }
 
 model PacksOnCards {

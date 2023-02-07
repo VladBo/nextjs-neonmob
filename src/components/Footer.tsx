@@ -3,11 +3,11 @@ import { Icons } from "./ui/Icons";
 
 const Footer = () => {
   return (
-    <footer className="container bg-white text-slate-600">
-      <div className="flex  flex-col items-center justify-between gap-4 border-t border-t-slate-200 py-10 md:h-24 md:flex-row md:py-0">
+    <footer className="container w-full bg-white dark:bg-brand-900">
+      <div className="flex flex-col items-center justify-between gap-4 border-t border-t-slate-200 py-10 dark:border-t-slate-700 md:h-24 md:flex-row md:py-0">
         <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
           <Icons.logo />
-          <p className="text-center text-sm leading-loose md:text-left">
+          <p className="text-center text-sm leading-loose text-slate-600 dark:text-slate-100 md:text-left">
             Built by{" "}
             <a
               href={siteConfig.links.twitter}
@@ -38,7 +38,7 @@ const Footer = () => {
             .
           </p>
         </div>
-        <p className="text-center text-sm md:text-left">
+        <p className="text-center text-sm text-slate-600 dark:text-slate-100 md:text-left">
           The source code is available on{" "}
           <a
             href={siteConfig.links.github}

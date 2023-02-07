@@ -28,8 +28,9 @@ const MainMenu = ({ items }: { items: MainNavItem[] }) => {
               key={index}
               href={item.disabled ? "#" : item.href}
               className={cn(
-                "flex items-center text-lg font-semibold text-slate-600 sm:text-sm",
-                item.href.startsWith(`/${segment}`) && "text-slate-900",
+                "flex items-center text-xs font-medium tracking-wider text-slate-600 dark:text-white/50 dark:hover:text-white",
+                item.href.startsWith(`/${segment}`) &&
+                  "text-slate-900 dark:text-white",
                 item.disabled && "cursor-not-allowed opacity-80"
               )}
             >

@@ -1,8 +1,5 @@
 import "../styles/globals.css";
-// import { Inter } from "@next/font/google";
-import Header from "../components/Header";
 import Footer from "../components/Footer";
-import CartContextProvider from "../providers/CartContextProvider";
 import { AnalyticsWrapper } from "../lib/clients/Analytics";
 import { TRPCProvider } from "../providers/trpcProvider";
 import { use } from "react";
@@ -11,7 +8,7 @@ import UserContextProvider from "../providers/UserProvider";
 import AuthError from "../components/AuthError";
 import cn from "../helpers/cn";
 import { Toaster } from "../components/ui/Toast";
-import { Inter as FontSans } from "@next/font/google";
+import { Open_Sans as FontSans } from "@next/font/google";
 import { ThemeProvider } from "../providers/ThemeProvider";
 
 const fontSans = FontSans({
@@ -31,7 +28,7 @@ export default function RootLayout({
       <head />
       <body
         className={cn(
-          "min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50",
+          "min-h-screen bg-white font-sans text-sm font-light text-slate-900 antialiased dark:bg-brand-900 dark:text-white",
           fontSans.variable
         )}
       >

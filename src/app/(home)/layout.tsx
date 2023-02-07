@@ -1,7 +1,7 @@
-import Link from "next/link";
-import Header from "../../components/Header";
 import MainMenu from "../../components/menus/MainMenu";
+import { ModeToggle } from "../../components/ModeToggle";
 import { homepageConfig } from "../../config/homepage";
+import { SignInButton } from "../../components/buttons/SignInButton";
 
 export default async function HomeLayout({
   children,
@@ -9,23 +9,17 @@ export default async function HomeLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen flex-col">
-      {/* <Header /> */}
-      <header className="sticky top-0 z-40 bg-black px-2 py-3">
-        <div className="flex h-16 items-center justify-between border-b border-b-slate-200 py-4">
+    <div className="flex flex-col">
+      <header className="sticky top-0 z-40 w-full border-b border-b-slate-200 bg-white dark:border-b-slate-700 dark:bg-black">
+        <div className="container flex h-16 items-center">
           <MainMenu items={homepageConfig.mainMenu} />
-          <nav>
-            <Link
-              href="/login"
-              className="relative inline-flex h-8 items-center rounded-md border border-transparent bg-brand-500 px-6 py-1 text-sm font-medium text-white hover:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
-            >
-              Login
-            </Link>
-          </nav>
+          <div className="flex flex-1 items-center justify-end space-x-2">
+            <ModeToggle />
+            <SignInButton />
+          </div>
         </div>
       </header>
       <main className="flex-1">{children}</main>
-      {/* <SiteFooter /> */}
     </div>
   );
 }
